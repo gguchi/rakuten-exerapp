@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+</head>
+
+<style>
+
+    body{
+        background-color:#63e5ff;
+        font-family: 'Arial';
+    }
+
+    table{
+        width: 100%;
+    }
+    .newProduct{
+        width: 100px;
+        height: 20px;
+        background-color: blue;
+        border-radius: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        float: right;
+        margin-right: 150px;
+        margin-top:25px;
+        position:relative;
+    }
+    .headerText{
+        float: left;
+        margin-left: 150px;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    input{
+        border-radius:2px;
+        border: 1px solid transparent;
+        margin-bottom: 10px;
+    }
+
+    .savebutton{
+        background-color: blue;
+        border: 1px solid transparent;
+        border-radius: 2px;
+        color: white;
+    }
+
+    .backlink{
+        color:black;
+    }
+    .formcontainer{
+        width: 100%;
+    }
+
+</style>
+
+<body>
+<div align="center">
+    <h1>Product Management</h1>
+    <hr>
+    <h4>ENTER PRODUCT DETAILS</h4>
+
+    <div class="formcontainer">
+    <form action="#" th:action="@{/saveProduct}" th:object="${product}" method="post">
+        <label for="name">Product Name</label><br>
+        <input type="text" th:field="*{name}" placeholder="Product Name" name="name"><br>
+
+        <label for="brand">Brand</label><br>
+        <input type="text" th:field="*{brand}" placeholder="Product Brand" name="brand"><br>
+
+        <label for="price">Full Price</label><br>
+        <input type="text" th:field="*{price}" placeholder="Full Price" value="null" name="price"><br>
+
+        <label for="discount">Discount Price</label><br>
+        <input type="text" th:field="*{discountPrice}" placeholder="Discount Price" value="null" name="discount"><br>
+
+        <button type="submit" class="savebutton">Save Product</button>
+    </form>
+
+    <a th:href = "@{/}" class="backlink">Back to Product List</a>
+    </div>
+</div>
+</body>
+</html>

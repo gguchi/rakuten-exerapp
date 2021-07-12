@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+</head>
+
+<style>
+    body{
+        background-color:#63e5ff;
+        font-family: 'Arial';
+    }
+
+    table{
+        width: 100%;
+    }
+    .newProduct{
+        width: 100px;
+        height: 20px;
+        background-color: blue;
+        border-radius: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        float: right;
+        margin-right: 150px;
+        margin-top:25px;
+        position:relative;
+    }
+    .headerText{
+        float: left;
+        margin-left: 150px;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    input{
+        border-radius:2px;
+        border: 1px solid transparent;
+        margin-bottom: 10px;
+    }
+
+    .savebutton{
+        background-color: blue;
+        border: 1px solid transparent;
+        border-radius: 2px;
+        color: white;
+    }
+
+    .backlink{
+        color:black;
+    }
+    .formcontainer{
+        width: 100%;
+    }
+    .updatebutton{
+        border: 1px solid transparent;
+        background-color: #0011ff;
+        color: white;
+    }
+</style>
+
+<body>
+<div align="center">
+    <h1>Product Management</h1>
+    <hr>
+    <h2>Update Product</h2>
+
+    <form action="#" th:action="@{/saveProduct}" th:object="${product}" method="post">
+        <label for="name">Product Name</label>
+        <label for="brand">Brand</label>
+        <label for="price">Price</label>
+        <label for="discount">Discount</label><br>
+
+
+        <input type="hidden" th:field="*{id}">
+        <input type="text" th:field="*{name}" name="name">
+        <input type="text" th:field="*{brand}" name="brand">
+        <input type="text" th:field="*{price}" name="price">
+        <input type="text" th:field="*{discountPrice}" name="discount">
+        <button type="submit" class="updatebutton">Update Product</button>
+    </form>
+
+    <a th:href = "@{/}">Back to Product List</a>
+
+</div>
+</body>
+</html>

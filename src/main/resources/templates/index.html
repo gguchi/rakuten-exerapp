@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="style.css">
+<meta charset="utf-8"/>
+<title>Product Manager</title>
+</head>
+
+<style>
+
+    body{
+        background-color:#63e5ff;
+        font-family: 'Arial';
+    }
+
+    .updatebutton, .deletebutton{
+        width: 100px;
+        height: 20px;
+        border-radius: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-right: 5px;
+        padding-left: 5px
+    }
+
+    .updatebutton{
+        background-color: green;
+    }
+    .deletebutton{
+        background-color: red;
+    }
+
+    table{
+        width: 100%;
+        background-color: #75dbf0;
+        border: 2px solid #73d2e6;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    th{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    td{
+        text-align: center;
+        vertical-align: middle;
+        margin-left: 100px;
+        padding: 10px;
+        background-color: white;
+    }
+    .newProduct{
+        width: 100px;
+        height: 20px;
+        background-color: blue;
+        border-radius: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        float: right;
+        margin-right: 150px;
+        margin-top:25px;
+        position:relative;
+    }
+    .headerText{
+        float: left;
+        margin-left: 150px;
+    }
+    a{
+        text-decoration: none;
+        color: white;
+    }
+
+</style>
+<body>
+
+<div align="center">
+    <div class="header">
+    <div class="newProduct"><a th:href = "@{/newProductForm}">Add Product</a></div>
+    <h1 class="headerText">Product List</h1>
+    </div>
+        <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Discounted Price</th>
+                <th>Brand</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${productList}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.discountPrice}"></td>
+                <td th:text="${product.brand}"></td>
+                <td><a th:href="@{/showUpdateForm/{id}(id=${product.id})}" class="updatebutton">UPDATE</a>
+                    <a th:href="@{/deleteProduct/{id}(id=${product.id})}" class="deletebutton">DELETE</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
