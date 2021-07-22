@@ -2,9 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="style.css">
-<meta charset="utf-8"/>
-<title>Product Manager</title>
+    <meta charset="UTF-8">
+    <title>Register</title>
 </head>
 
 <style>
@@ -75,32 +74,8 @@
 
 <div align="center">
     <div class="header">
-    <div class="newProduct"><a th:href = "@{/newProductForm}">Add Product</a></div>
-        <div class="newProduct"><a th:href = "@{/userRegister}">Login</a></div>
-    <h1 class="headerText">Product List</h1>
+        <div class="newProduct"><a th:href = "@{/}">Home</a></div>
     </div>
-        <table>
-        <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Discounted Price</th>
-                <th>Brand</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="product : ${productList}">
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.price}"></td>
-                <td th:text="${product.discountPrice}"></td>
-                <td th:text="${product.brand}"></td>
-                <td><a th:href="@{/showUpdateForm/{id}(id=${product.id})}" class="updatebutton">UPDATE</a>
-                    <a th:href="@{/deleteProduct/{id}(id=${product.id})}" class="deletebutton">DELETE</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </div>
 
 </body>
