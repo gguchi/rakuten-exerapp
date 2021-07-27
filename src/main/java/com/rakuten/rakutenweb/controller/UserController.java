@@ -1,6 +1,5 @@
 package com.rakuten.rakutenweb.controller;
 
-import com.rakuten.rakutenweb.model.Product;
 import com.rakuten.rakutenweb.model.User;
 import com.rakuten.rakutenweb.service.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +20,18 @@ public class UserController {
         User user = new User();
         model.addAttribute("user", user);
         return "register";
+    }
+
+    @GetMapping("/userLogin")
+    public String userLogin(Model model){
+        User user = new User();
+        model.addAttribute("user", user);
+        return "login";
+    }
+
+    @PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute("user") User user){
+        userServices.save(user);
+        return "redirect:/";
     }
 }

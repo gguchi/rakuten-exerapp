@@ -2,9 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="style.css">
-<meta charset="utf-8"/>
-<title>Product Manager</title>
+    <meta charset="UTF-8">
+    <title>Login</title>
 </head>
 
 <style>
@@ -74,34 +73,25 @@
 <body>
 
 <div align="center">
-    <div class="header">
-    <div class="newProduct"><a th:href = "@{/newProductForm}">Add Product</a></div>
-        <div class="newProduct"><a th:href = "@{/userLogin}">Login</a></div>
-    <h1 class="headerText">Product List</h1>
-    </div>
-        <table>
-        <thead>
-            <tr>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Discounted Price</th>
-                <th>Brand</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="product : ${productList}">
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.price}"></td>
-                <td th:text="${product.discountPrice}"></td>
-                <td th:text="${product.brand}"></td>
-                <td><a th:href="@{/showUpdateForm/{id}(id=${product.id})}" class="updatebutton">UPDATE</a>
-                    <a th:href="@{/deleteProduct/{id}(id=${product.id})}" class="deletebutton">DELETE</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <h1>LOGIN</h1>
+    <hr>
+    <h4>ENTER USER CREDENTIALS</h4>
 
+
+    <div class="formcontainer">
+        <form action="#" th:action="@{/saveUser}" th:object="${user}" method="post">
+
+            <label for="username">User Name</label><br>
+            <input type="text" th:field="*{name}" placeholder="User Name" name="username"><br>
+
+            <label for="Password">Password</label><br>
+            <input type="text" th:field="*{password}" placeholder="Password" name="password"><br>
+
+            <button type="submit" class="savebutton">Register</button>
+        </form>
+        <p>Don't Have an Account?<a th:href = "@{/userRegister}" class="backlink"> Register Here</a></p>
+        <a th:href = "@{/}" class="backlink">Back to HomePage</a>
+    </div>
+</div>
 </body>
 </html>
