@@ -18,19 +18,19 @@ public class UserController {
     @GetMapping("/userRegister")
     public String userRegister(Model model){
         User user = new User();
-        model.addAttribute("user", user);
+        model.addAttribute("username", user);
         return "register";
     }
 
     @GetMapping("/userLogin")
     public String userLogin(Model model){
         User user = new User();
-        model.addAttribute("user", user);
+        model.addAttribute("username", user);
         return "login";
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") User user){
+    public String saveUser(@ModelAttribute("username") User user){
         userServices.save(user);
         return "redirect:/";
     }
