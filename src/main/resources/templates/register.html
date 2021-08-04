@@ -84,17 +84,25 @@
 
     <div class="formcontainer">
     <form action="#" th:action="@{/saveUser}" th:object="${user}" method="post">
-        <label for="email">E-mail</label><br>
-        <input type="text" th:field="*{email}" placeholder="email" name="email"><br>
+        <label>E-mail</label><br>
+        <input type="text" th:value="*{email}" placeholder="email" name="email" th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
+        <br>
 
-        <label for="fullName">Full Name</label><br>
-        <input type="text" th:field="*{fullName}" placeholder="Full Name" name="fullName"><br>
+        <label>Full Name</label><br>
+        <input type="text" th:value="*{fullName}" placeholder="Full Name" name="fullName" th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="invalid-feedback"></div>
+        <br>
 
-        <label for="username">User Name</label><br>
-        <input type="text" th:field="*{name}" placeholder="User Name" name="username"><br>
+        <label>User Name</label><br>
+        <input type="text" th:value="*{username}" placeholder="User Name" name="username" th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback"></div>
+        <br>
 
-        <label for="Password">Password</label><br>
-        <input type="text" th:field="*{password}" placeholder="Password" name="password"><br>
+        <label>Password</label><br>
+        <input type="password" th:value="*{password}" placeholder="Password" name="password" th:errorClass="is-invalid">
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
+        <br>
 
         <button type="submit" class="savebutton">Register</button>
     </form>

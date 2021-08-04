@@ -4,15 +4,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class User {
 
     @Id
     private int id;
+    @NotBlank(message = "Enter your full name")
     private String fullName;
+    @NotBlank(message="Enter your username")
     private String username;
+    @NotBlank(message="Enter your password")
     private String password;
+    @NotBlank(message="Enter your email")
+    @Email(message = "Enter a valid email address")
     private String email;
 
     @Override
@@ -56,13 +63,17 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getName() {
+    public String getUsername() {
         return username;
     }
 
-    public void setName(String username) { this.username = username; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    public String getPassword() { return password; }
+    public String getPassword() {
+        return password;
+    }
 
     public void setPassword(String password) {
         this.password = password;
@@ -75,6 +86,5 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
 }
 

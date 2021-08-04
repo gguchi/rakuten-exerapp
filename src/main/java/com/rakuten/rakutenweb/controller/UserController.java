@@ -2,15 +2,32 @@ package com.rakuten.rakutenweb.controller;
 
 import com.rakuten.rakutenweb.model.User;
 import com.rakuten.rakutenweb.service.UserServices;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
+
+
 @Controller
 public class UserController {
+
+    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+
+    @InitBinder
+    public void iniBinder(WebDataBinder dataBinder){
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
 
     @Autowired
     private UserServices userServices;
@@ -30,8 +47,12 @@ public class UserController {
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute("user") User user){
+    public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "register";
+        }
+        log.info(">> USER: {}", user.toString());
         userServices.save(user);
-        return "redirect:/";
+        return "redirect:/login";
     }
 }
