@@ -1,5 +1,7 @@
 package com.rakuten.rakutenweb.model;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class User {
     @NotBlank(message="Enter your username")
     private String username;
     @NotBlank(message="Enter your password")
+    @Length(min = 6, message = "Password should be at least six characters")
     private String password;
     @NotBlank(message="Enter your email")
     @Email(message = "Enter a valid email address")

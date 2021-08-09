@@ -11,6 +11,7 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService service;
+
     @GetMapping("/")
     public String viewHomePage(Model model) {
         model.addAttribute("productList", service.listAll());
