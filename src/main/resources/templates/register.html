@@ -83,7 +83,7 @@
 
 
     <div class="formcontainer">
-    <form action="#" th:action="@{/userRegister}" th:object="${user}" method="post">
+    <form action="#" th:action="@{/saveUser}" th:object="${user}" method="post">
         <label>E-mail</label><br>
         <input type="text" th:value="*{email}" placeholder="email" name="email" th:errorClass="is-invalid">
         <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="invalid-feedback"></div>
@@ -103,11 +103,6 @@
         <input type="password" th:value="*{password}" placeholder="Password" name="password" th:errorClass="is-invalid">
         <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
         <br>
-
-<!--        <label>Re-enter Password</label><br>-->
-<!--        <input type="password" th:value="*{rpassword}" placeholder="Password" name="password" th:errorClass="is-invalid">-->
-<!--        <div th:if="${#fields.hasErrors('rpassword')}" th:errors="*{password}" class="invalid-feedback"></div>-->
-<!--        <br>-->
 
         <button type="submit" class="savebutton">Register</button>
     </form>

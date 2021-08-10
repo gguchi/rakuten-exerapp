@@ -79,14 +79,12 @@
 
 
     <div class="formcontainer">
-        <form action="#" th:action="@{/login}" th:object="${user}" method="post">
+        <form action="#" th:action="@{/saveUser}" th:object="${user}" method="post">
 
-            <div class="alert" th:if="${message}" th:text="${message}"></div>
-
-            <label>User Name</label><br>
+            <label for="username">User Name</label><br>
             <input type="text" th:field="*{username}" placeholder="User Name" name="username"><br>
 
-            <label>Password</label><br>
+            <label for="Password">Password</label><br>
             <input type="text" th:field="*{password}" placeholder="Password" name="password"><br>
 
             <button type="submit" class="savebutton">Login</button>

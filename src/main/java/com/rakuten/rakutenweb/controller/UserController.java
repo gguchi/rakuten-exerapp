@@ -9,13 +9,11 @@ import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -34,11 +32,6 @@ public class UserController {
     @Autowired
     private UserServices userServices;
 
-    @Autowired
-    public UserController(UserServices userServices){
-        this.userServices = userServices;
-    }
-
     @GetMapping("/userRegister")
     public String userRegister(Model model){
         User user = new User();
@@ -53,23 +46,12 @@ public class UserController {
         return "login";
     }
 
-    @PostMapping("/userRegister")
-    public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult , RedirectAttributes redirectAttributes){
-
-        if(userServices.userExist(user.getEmail())){
-            bindingResult.addError(new FieldError(
-                    "user","email","Email address already in use."));
-         }
-//
-//        if(user.getPassword()!=null && user.getPassword() !=null){
-//            bindingResult.addError(new FieldError("user","password", "Password did not match"));
-//        }
-
+    @PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "register";
         }
         log.info(">> USER: {}", user.toString());
-        redirectAttributes.addFlashAttribute("message","Registration Successful");
         userServices.save(user);
         return "redirect:/login";
     }
