@@ -49,10 +49,12 @@ public class UserController {
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
-            return "register";
+            return "/userLogin";
         }
         log.info(">> USER: {}", user.toString());
         userServices.save(user);
-        return "redirect:/login";
+        return "redirect:/userLogin";
     }
+
+
 }
