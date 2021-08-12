@@ -35,23 +35,27 @@ public class UserController {
     @GetMapping("/userRegister")
     public String userRegister(Model model){
         User user = new User();
-        model.addAttribute("user", user);
+        model.addAttribute("username", user);
         return "register";
     }
 
     @GetMapping("/userLogin")
     public String userLogin(Model model){
         User user = new User();
-        model.addAttribute("user", user);
+        model.addAttribute("username", user);
         return "login";
     }
 
     @PostMapping("/saveUser")
+<<<<<<< HEAD
     public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             return "/userLogin";
         }
         log.info(">> USER: {}", user.toString());
+=======
+    public String saveUser(@ModelAttribute("username") User user){
+>>>>>>> 9cb1f7aaf7d9086dfb1ee804ce0d11c2d6632ae8
         userServices.save(user);
         return "redirect:/userLogin";
     }

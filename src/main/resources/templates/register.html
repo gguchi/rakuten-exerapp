@@ -94,10 +94,15 @@
         <div th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="invalid-feedback"></div>
         <br>
 
+<<<<<<< HEAD
         <label>User Name</label><br>
         <input type="text" th:value="*{username}" placeholder="User Name" name="username" th:errorClass="is-invalid">
         <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="invalid-feedback"></div>
         <br>
+=======
+        <label for="username">User Name</label><br>
+        <input type="text" th:field="*{username}" placeholder="User Name" name="username"><br>
+>>>>>>> 9cb1f7aaf7d9086dfb1ee804ce0d11c2d6632ae8
 
         <label>Password</label><br>
         <input type="password" th:value="*{password}" placeholder="Password" name="password" th:errorClass="is-invalid">
